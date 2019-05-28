@@ -1,0 +1,33 @@
+5
+Hi everybody and welcome to University. I am glad you have seen the light and decided to learn the wonderful language that is <b>Haskell</b>.
+Haskell is a functional programming language which means it is all about <b>functions</b>. So what is a function?
+Well, a function is like a machine that generates output from input where the output is somehow related to the input. 
+In maths you will have seen many examples of functions such as f(x)=x^2. This means the function f takes as input a value x and outputs the value x^2.
+However functions can only accept certain types of data as input and as output. In our example x has to be numeric meaning f also outputs a numeric value.
+<l>
+The main kinds of data Haskell uses is:
+Integers: e.g. -6, 100
+Floats: e.g. 5.62
+Characters: e.g. 'c'
+Strings: e.g. "Hello"
+Booleans: <b>only</b> True, False
+</l>
+In Haskell each function has a <b>type signature</b> which tells you the name of the function and the type of data it accepts as input and output.
+In our example f has type signature f :: Int -> Int. This means the function f takes as input integers and outputs integers. Now I'd like to ask you a few questions.
+Q4Let first be a function that takes a string and returns the first letter in the string. What is its type signature?
+first :: Char -> String
+first :: String -> String
+*first :: String -> Char
+first :: Char -> Char
+*<b>Well done</b> that's correct because first takes as input string and outputs the first letter of the string which is a character.
+Unlucky but that's not quite correct, first takes as input string and outputs the first letter of the string which is a character. 
+Q4Let isEven be a function that takes an integer x and returns true if it is even and false otherwise. What is its type signature?
+isEven :: Int -> Int
+isEven :: String -> Bool
+isEven :: Bool -> Int
+*isEven :: Int -> Bool
+*<b>Brilliant</b> that's correct because isEven takes as input integers and outputs true or false which is a boolean.
+Good try but that's not right. isEven takes as input integers and outputs true or false which is a boolean.
+So far we have only seen functions that take one input and have one output but functions in Haskell can accept <b>multiple inputs</b> but can only ever have <b>one output</b>.
+Therefore a type signature has the following format function name :: Input -> Input -> ... -> Input -> Output.
+I think that is enough information for today thanks for your attention and I will see you tomorrow.

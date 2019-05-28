@@ -1,0 +1,40 @@
+15
+Last class we looked at pattern matching and today we are going to look at something similar called <b>guards!</b>
+To start thinking about guards I will rewrite the is21 function from last time but using guards instead of pattern matching. As always make a note of the following function.
+<align="left">is21 :: Int -> Bool\nis21 x | x == 21 = True\n<color=white>is21 x </color>| otherwise = False</align>\n
+This time the input is stored in the variable x. The function then checks the first case which is after the |. If x is equal to 21 then this case is satisfied and so the output is True. If x is not 21 then Haskell checks the next case. Otherwise just means if all other cases fail then use this case.
+When using pattern matching we are checking that the input conforms to a certain pattern but with guards we check that certain properties are satisfied. Let's look at a couple of examples that I will ask you questions about!
+<align="left">animalNoise :: String -> String\nanimalNoise animal | animal == "Cat" = "Meow!"\n<color=white>animalNoise animal </color>| animal == "Dog" = "Woof!"\n<color=white>animalNoise animal </color>| otherwise = "No sound!"\n<color=white>animalNoise animal </color>| animal == "Cow" = "Moo!"</align>
+Q4What is the output when we call "animalNoise "Dog""?
+"Meow!"
+*"Woof!"
+"Moo!"
+"No sound!"
+*Yes! As this matches the second case the function will return "Woof!".
+Not quite. As this matches the second case the function will return "Woof!".
+Q4What is the output when we call "animalNoise "Cat""?
+*"Meow!"
+"Woof!"
+"Moo!"
+"No sound!"
+*Yes! As this matches the first case the function will return "Meow!".
+Not quite. As this matches the first case the function will return "Meow!".
+Q4What is the output when we call "animalNoise "Cow""?
+"Meow!"
+"Woof!"
+"Moo!"
+*"No sound!"
+*Yes! The third case catches all input that is not "Cat" or "Dog" so "No sound!" is returned.
+Not quite. The third case catches all input that is not "Cat" or "Dog" so "No sound!" is returned.
+Q4What is the output when we call "animalNoise "Fox""?
+"Meow!"
+"Woof!"
+"Moo!"
+*"No sound!"
+*Yes! As far as Haskell is concerned this is the same as the last question!
+Not quite. As far as Haskell is concerned this is the same as the last question!
+Again, as with pattern matching, the order of the cases matter so make sure the case that is satisfied for all input is last.
+As already mentioned otherwise is always true so instead of putting otherwise we could have just put True. But we must be careful and make sure that for any input there is a case that is satisfied. For example...
+<align="left">sign :: Int -> String\nsign number | number > 0 = "Positive!"\n<color=white>sign number </color>| number < 0 = "Negative!"\nIf we call this function with 0 as its input then there will be a problem as 0 does not satisfy any of the cases.
+As a method of good practise you should try and align the bars (|) so that each case is directly under the other. You should do this using spaces and not the tab key! 
+That's all for today see you next time, where we will be starting a new topic!

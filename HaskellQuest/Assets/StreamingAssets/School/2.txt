@@ -1,0 +1,22 @@
+5
+Hi everyone and welcome back! Last class we looked at type signatures and today we will look at calling and declaring a function.
+Before we begin I will just introduce some terminology used throughout the class. In order to apply functions we use <b>parameters</b>.
+A parameter provides a named reference to values passed to a function as input. For example in the function f(x) = x^2, x is the parameter. The actual values passed to the function are called <b>arguments</b>.
+Now let's work through an example of applying a function together. 
+Q4Let add :: Int -> Int -> Int be a function, from its type signature we know...
+It takes as parameters one integer and returns two integers
+*It takes as parameters two integers and returns one integer
+It takes as parameters three integers
+It is not a valid type signature
+*Yes, well done. We mentioned last class that functions can only return one value so add takes as parameters two integers and returns one integer.
+That's not quite right. We mentioned last class that functions can only return one value so add takes as parameters two integers and returns one integer.
+Now let's use that function to add 5 and 7. In order to apply a function to some values we first write the function name followed by the values so, add 5 7. This will return 12.
+This way of calling a function is called prefix because the function name comes first followed by its arguments. However normally when we write functions dealing with two numbers we write them infix so 5+3 for example.
+To do this in Haskell, using our add function, we write 5 `add` 3. Note that this can only be done when working with <b>2 parameters</b> and is <b>exactly the same</b> as add 5 3 the only difference is syntactically.
+We can also compose multiple functions together. For example lets also use the function \nmultiply :: Int -> Int -> Int.
+Then we can compose add and multiple together. For example add 5 (multiply 6 2) will return 17 as we first multiply 6 and 2 and then add 5. 
+So far all we have looked at are type signatures but functions contain another important part called <b>function declarations</b>. Function declarations contain the main body of the function.
+Now we are ready to see our first full Haskell function.
+The function add we have used is defined in the following way:\n<align="left">add :: Int -> Int -> Int\nadd x y = x + y</align>\nWhere the first line is its type signature and the second is its declaration.
+We have now seen enough information to be able to write and apply simple functions of our own!
+Tonight I would like you to complete the online worksheet I have sent you and next class we will cover list comprehensions.

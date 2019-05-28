@@ -1,0 +1,55 @@
+﻿3,50,100
+<s>
+Create a list of integers from 1 to 100 and call it myList.
+<a>
+<i>
+prop_test :: [Int] -> Bool
+prop_test xs = myList == [1..100]
+</a>
+<h>
+The type of a list is the type of the data in the list in square brackets.
+[1,2,3,4]==[1..4].
+</h>
+Write a function called fullStop that puts a '.' at the end of the inputted String.
+<a>
+<i>
+test :: String -> String
+test str = str ++ "."
+prop_test :: String -> Bool
+prop_test str = fullStop str == test str
+</a>
+<h>
+One of the functions cons (:) or append (++) may come in handy.
+Remember cons inserts an element into a list and append combines two lists.
+</h>
+</s>
+<s>
+Write a function called replaceFirst that takes an integer and a list of integers and replaces the first element in the list with the given integer. (Extra care must be taken with the empty list).
+<a>
+<i>
+test :: Int -> [Int] -> [Int]
+test x [] = [x]
+test x xs = x : tail xs
+prop_test :: Int -> [Int] -> Bool
+prop_test x xs = replaceFirst x xs == test x xs
+</a>
+<h>
+Again, one of the functions cons (:) or append (++) may come in handy.
+An inbuilt function that returns the list excluding its first entry may come in handy.
+If the list is empty you can return the list with just the given integer in it i.e. [x]
+To determine if a list is empty you can use pattern matching or use guards and the function null.
+</h>
+Write a function called xor that takes a list of Booleans and returns True if at least one of the elements of the list is True but they are not all True.
+<a>
+<i>
+test :: [Bool] -> Bool
+test bs = or bs && not (and bs)
+prop_test :: [Bool] -> Bool
+prop_test bs = xor bs == test bs
+</a>
+<h>
+This can be written exclusively using "or", "not", "and" and "&&".
+Remember "and" and "or" take a list of Booleans whereas && takes two Booleans.
+You do not need to use a list comprehension. 
+</h>
+</s>

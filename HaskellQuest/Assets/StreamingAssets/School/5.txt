@@ -1,0 +1,22 @@
+10
+Today we are going to look at one of the most important data types in Haskell. That data type is <b>Lists!</b>
+A list is a way of grouping lots of data together into one variable but all of the data in a list must have the <b>same type</b>. 
+To write the type of a list we write the data type of the data contained in the list enclosed in square brackets.
+We have already seen an example of a list and that is a String. The String "Hello" is equivalent to the list:\n<align="left">list :: [Char]\nlist = ['H','e','l','l','o']</align>\nwhere list is a list of characters.
+Another example is, if ints is a list of the integers 1 through 4 we write\n<align="left">ints :: [Int]\nints = [1,2,3,4]</align>\nwe could have also written\n<align="left">ints = [1..4]</align>
+Q4What is the type of the following list, myList = [1,2,3,'4']?
+myList :: [Int]
+myList :: [Char]
+myList:: [Int & Char]
+*type error
+*Yes! There would be a type error as lists can only contain data of the same type and myList contains integers 1, 2, 3 but the character '4'.
+Not quite! There would be a type error as lists can only contain data of the same type and myList contains integers 1, 2, 3 but the character ' 4'.
+In the first workshop we looked at some inbuilt Haskell functions, there are also functions that can help us operate on lists.
+You will see some of these functions in the next worksheet that I will send you after the next class as well as two other really important functions called <b>(:) cons</b> and <b>(++) append</b>.
+Cons takes an element and a list and inserts the element into the list. For example,\n1:[4,9] = [1,4,9]\nWhereas append takes two lists and appends the two together. So,\n[1]++[4,9] = [1,4,9]
+Q2Is the following true or false, [2,3]:4=[2,3,4]?
+True
+*False
+*Yes! The order of arguments to a function matter and I said that cons takes an element and a list so the element is first and the list second.
+The order of arguments to a function matter and I said that cons takes an element and a list so the element is first and the list second.
+Lists are really important in Haskell and next lesson we will see how we can work with them.

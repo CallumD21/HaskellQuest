@@ -1,0 +1,53 @@
+3,50,100
+<s>
+Create a string called hello and set its value to "Hello World!"
+<a>
+<i>
+test :: String
+test = "Hello World!"
+prop_test :: String -> Bool
+prop_test str = test == hello
+</a>
+<h>
+You need to give a type definition as well as setting the value of hello.
+The type definition for a variable is of the form: \nvariableName :: Type.
+In Haskell the type string starts with a capital s.
+Strings are case sensitive, make sure you enter the string exactly as it is shown.
+</h>
+Create an integer called password and set its value to 1234!
+<a>
+<i>
+test :: Int
+test = 1234
+prop_test :: Int -> Bool
+prop_test x = test == password
+</a>
+<h>
+</h>
+</s>
+<s>
+Write a function called increment that adds one onto its integer input!
+<a>
+<i>
+test :: Int -> Int
+test x = x+1
+prop_test :: Int -> Bool
+prop_test x = test x == increment x
+</a>
+<h>
+The type definition has form: \nfunctionName :: Input type -> Output type
+The function declaration has form: \nfunctionName variable = ...
+</h>
+Write a function called double that takes as input an integer and doubles it!
+<a>
+<i>
+test :: Int -> Int
+test x = 2*x
+prop_test :: Int->Bool
+prop_test x = double x == test x
+</a>
+<h>
+To multiply two numbers use *.
+Remember your function needs a type definition.
+</h>
+</s>

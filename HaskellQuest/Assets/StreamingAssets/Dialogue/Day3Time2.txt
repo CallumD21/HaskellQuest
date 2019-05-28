@@ -1,0 +1,4 @@
+(The lights at the bottom indicate the stages of breaking into the system.)
+(The more stages you complete the more money you earn.)
+(Once a stage is completed it cannot be redone but if you run out of lives you can continue from the last stage you completed.)
+(Once a system has been fully broken into it can not be done again.)

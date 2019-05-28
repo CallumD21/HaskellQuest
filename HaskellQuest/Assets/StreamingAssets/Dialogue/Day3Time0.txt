@@ -1,0 +1,5 @@
+I need to start earning money otherwise I won't be able to pay my bills and buy food.
+I've been reading about this new app that allows you to break into systems and steal money.
+In order to crack the system though you have to program in Haskell.
+Let's check it out.
+(Open up your computer and then click the new icon.)

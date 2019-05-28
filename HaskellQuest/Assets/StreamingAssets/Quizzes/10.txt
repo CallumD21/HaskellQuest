@@ -1,0 +1,64 @@
+﻿3,50,100
+<s>
+Write a function called oddDivThreeRec that checks that every number in a list of integers that is divisible by 3 is odd.
+<a>
+<i>
+test :: [Int] -> Bool
+test [] = True
+test (x:xs) | mod x 3 == 0 = not(even x) && test xs
+            | otherwise = test xs
+prop_test :: [Int] -> Bool
+prop_test xs = oddDivThreeRec xs == test xs
+</a>
+<h>
+Use guards and mod to check if the current entry is divisible by 3.
+The inbuilt functions even, not and && may come in handy.
+</h>
+Write a function called f that computes the product of the squares of the negative numbers (strictly less than 0) in a list of integers.
+<a>
+<i>
+test :: [Int] -> Int
+test [] = 1
+test (x:xs) | x<0 = x^2 * test xs
+            | otherwise = test xs
+prop_test :: [Int] -> Bool
+prop_test xs = f xs == test xs
+</a>
+<h>
+What should the output of f be with the empty list?
+</h>
+</s>
+<s>
+Write a function called normalize that converts a string to uppercase, removing all characters other than letters and digits.
+<a>
+import Data.Char
+<i>
+test :: String -> String
+test "" = ""
+test (x:xs) | isAlpha x || isDigit x = toUpper x : test xs
+            | otherwise = test xs
+prop_test :: String -> Bool
+prop_test xs = normalize xs == test xs
+</a>
+<h>
+The inbuilt functions isAlpha, isDigit, toUpper and || may come in handy.
+isAlpha returns true if the character is a letter.
+|| is the logical or operator that gets applied to two booleans.
+</h>
+Write a function repeatChar that take a String and a list of integers (in that order)
+that repeats each character in the string the number of times given by the number at the corresponding position in the list of integers, with negative numbers counting the same as 0. If the lengths of the two lists do not match, the extra elements in the longer list are ignored.
+<a>
+<i>
+test :: String -> [Int] -> String
+test "" xs = ""
+test str [] = ""
+test (c:cs) (x:xs) = replicate x c ++ test cs xs
+prop_test :: String -> [Int] ->Bool
+prop_test str xs = repeatChar str xs == test str xs
+</a>
+<h>
+You need two base cases, one for each of the lists, but they should both output the same thing.
+Use pattern matching to check when one of the lists is empty and the other can be either empty or not.
+The inbuilt function replicate takes an integer and a character and produces a String of the character repeated n times. If the integer is less than or equal to 0 replicate returns the empty string.
+</h>
+</s>

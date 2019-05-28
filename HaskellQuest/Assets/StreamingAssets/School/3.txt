@@ -1,0 +1,20 @@
+15
+Hi everyone and welcome back. I hope you all managed to complete the worksheet I sent you without too many difficulties.
+Haskell is a smart language and can do something called <b>pattern matching</b>. This is when we write patterns that our input data should conform too and if it does then Haskell will run the appropriate code. Let's look at an example...
+<align="left">is21 :: Int -> Bool\nis21 21 = True\nis21 x = False </align>\nHaskell reads the cases from top to bottom so if we run "is21 21", this matches the first case so will return True. 
+But if we call "is21 7" this doesn't match the first case so Haskell then looks at the next case. The x in the second case matches any integer so collects all other cases that aren't 21 so will return False. Let's look at another function...
+<align="left">isAorB :: Char -> Bool\nisAorB 'a' = True\nisAorB x = False\nisAorB 'b' = True</align>\nMake a note of this function as I am going to ask you some questions about it.
+Q2What is the output when we call "isAorB 'a' "?
+*True
+False
+*Yes! As this matches the first case the function will return True.
+Not quite. As this matches the first case the function will return True.
+Q2What is the output when we call "isAorB 'b' "?
+True
+*False
+*Yes because pattern matching matches patterns top to bottom so in this example the second case <b>always</b> enters with input not equal to 'a'. 
+No because pattern matching matches patterns top to bottom so in this example the second case <b>always</b> enters with input not equal to 'a'. 
+We have just seen that the ordering matters when using pattern matching and the case that captures all other input should be at the bottom as otherwise the lines under it are redundant.
+Another way of catching all of the input is using _ as this matches against anything. Lets look at another example...
+<align="left">first :: (Int,Int) -> Int\nfirst (a,_) = a </align>\nThis takes a pair of integers and returns the first element of the pair. We use _ to match with the second element of the pair as we don't care what it is.
+When using pattern matching be careful that there is <b>always a case for all input</b>. For example:\n<align="left">is21 :: Int -> Bool\nis21 21 = True</align>\nWill cause an error to be thrown when called with any input other than 21.

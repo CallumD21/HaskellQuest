@@ -1,0 +1,16 @@
+20
+We can also add <b>guards</b> to our list comprehensions so we only select the elements from the list that satisfy a certain criteria. 
+Way back in the first class on list comprehensions we looked at the following list comprehension\n[x^2 | x<-[1,2,3,4]]\n that squares all of the elements in the list [1,2,3,4].
+With guards we can alter the list comprehension so that it only squares the even integers in the list.
+[x^2 | x<-[1,2,3,4], even x]\nWe pronounce the <b>,</b> as such that. So, we read the above list comprehension by saying "The list of x^2 <b>where</b> x is <b>drawn from</b> [1,2,3,4] <b>such that</b> x is even".
+Hence, the output of\n[x^2 | x<-[1,2,3,4], even x]\nis [4,16]. First, we let x=1 as 1 is not even we move on. Then x=2 this is even so we square it and put it in the list. Then x=3 which is not even but x=4 is so we square it and put it in the list.
+Like we can have multiple generators we can also have multiple guards. 
+For example, let f be a function that takes a list of integers and squares the positive <b>and</b> even entries in the list.
+Then, f has the following definition,\n<align="left">f :: [Int] -> [Int]\nf xs = [x^2 | x<-xs, even x, x>=0]</align>\nSo we now require x to be even and positive (>=0).
+We read the previous list comprehension now as "The list of x^2 <b>where</b> x is <b>drawn from</b> xs <b>such that</b> x is even <b>and</b> x is positive".
+By combining: multiple generators, nested list comprehensions and guards we can end up with very complicated list comprehensions with really complex behaviour.
+The final thing I want to mention in today's class is a special inbuilt function that will come in really handy and that is <b>zip</b>.
+Here is the hoogle definition of zip, zip takes two lists and returns a list of corresponding pairs. For example,\nzip [1, 2] ['a', 'b'] = [(1, 'a'), (2, 'b')]
+This is a really nice function as it allows us to do some really special things. For example, if we zip a list with its tail we get a list of pairs of consecutive entries in the list.
+This can be seen with the following example,\nzip [1,2,3] (tail [1,2,3]) = [(1,2),(2,3)].
+That the end of the classes I hope you enjoyed the course and I hope to add more classes at a later date.

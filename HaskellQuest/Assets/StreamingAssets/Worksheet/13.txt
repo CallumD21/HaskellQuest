@@ -1,0 +1,174 @@
+20
+<h>
+--Worksheet 3
+--The aim of this worksheet is to practice writing recursive functions.
+--To do this we are going to write our own version of Haskell's in built function 
+--mod. Remember, mod takes two integers (a and b) and keeps subtracting b from
+--a until a is between 0 and b-1 inclusive.
+--NOTE: Throughout the worksheet we will assume the input to our mod
+--function is positive.
+
+--Exercise 1
+--Write the type signature for myMod which is our version of Haskell's mod
+--function.
+
+<if>
+<a>
+<i>
+myMod a b = a
+
+test :: Int -> Int -> Int
+test a b = a
+
+prop :: Int -> Int -> Bool
+prop a b = myMod a b == test a b
+</a>
+</h>
+<h>
+--Before we jump straight into writing myMod lets think about a simpler case.
+--First we will write a function called myMod2 that takes an integer a and mods it
+--by 2. The output of this function then is either 0 or 1.
+--Hence we keeping taking the modulus of the input until it is either of these 2
+--values. Therefore 0 and 1 are our two base cases.
+
+--Exercise 2
+--What should the output be when we reach 0?
+
+myMod2:: Int -> Int
+myMod2 0 =   <if>
+<a>
+ans :: Int
+ans = <i>
+prop :: Int -> Bool
+prop x = ans == 0
+</a>
+</h>
+<h>
+--Exercise 3
+--What should the output be when we reach 1?
+
+myMod2:: Int -> Int
+myMod2 0 = 0
+myMod2 1 =   <if>
+<a>
+ans :: Int
+ans  = <i>
+prop :: Int -> Bool
+prop x = ans == 1
+</a>
+</h>
+<h>
+--If the input is neither 0 or 1 then we should subtract 2 from the input and call our 
+--myMod2 function on this new number.
+
+--Exercise 4
+--Finish of our myMod2 function by entering the recursive step.
+
+myMod2:: Int -> Int
+myMod2 0 = 0
+myMod2 1 = 1
+myMod2 a =   <if>
+<a>
+myMod2:: Int -> Int
+myMod2 0 = 0
+myMod2 1 = 1
+myMod2 a = <i>
+test :: Int -> Int
+test 0 = 0
+test 1 = 1
+test a = test (a-2)
+prop :: Int -> Bool
+prop a = myMod2 (abs a) == test (abs a)
+</a>
+</h>
+<h>
+--Now that we have written this simpler version of modulus lets go back and think 
+--how to do it in the more generic case. The recursive step will be very similar
+--to the recursive step you have just written. However we now need base cases 
+--from 0 to b-1 which is a problem, so what do we do. Well, guards come to the 
+--rescue! We split up our function into two cases, the case where a is between 0
+--and b-1 and the case where it isn't.
+
+--Exercise 5
+--Fill in the first line from our myMod implementation that checks if a is between
+--0 and b-1 and outputs the appropriate integer.
+
+myMod :: Int -> Int -> Int
+myMod a b |   <if>
+<a>
+myMod :: Int -> Int -> Int
+myMod a b | <i>
+          | otherwise = -1
+test :: Int -> Int -> Int
+test a b | elem a [0..(b-1)] = a
+         | otherwise = -1
+prop :: Int -> Int -> Bool
+prop a b | b == 0 = True
+         | otherwise = myMod (abs a)  (abs b) == test (abs a) (abs b)
+</a>
+</h>
+<h>
+--Exercise 6
+--Fill in the final line from our myMod implementation, that is the recursive step.
+--Hint: this is very similar to the recursive step in myMod2.
+--The two | should be aligned but I can't seem to get it working!
+
+myMod :: Int -> Int -> Int
+myMod a b | elem a [0..(b-1)] = a
+          | <if> 
+<a>
+myMod :: Int -> Int -> Int
+myMod a b | elem a [0..(b-1)] = a
+          | <i>
+test :: Int -> Int -> Int
+test a b | elem a [0..(b-1)] = a
+         | otherwise = test (a-b) b
+prop :: Int -> Int -> Bool
+prop a b | b == 0 = True
+         | otherwise = myMod (abs a)  (abs b) == test (abs a) (abs b)
+</a>
+</h>
+<h>
+--Well done! You have now written your first recursive function.
+--To finish off we will write our own version of the div function.
+--This takes two integers a and b, divides a by b and rounds it down to the nearest 
+--integer. But, there is a much simpler way of thinking about this.
+--(Again we assume a and b are positive) Again, we will break it into two cases.
+
+--Exercise 7
+--If a is between 0 and b-1 inclusive what should the output be?
+--Hint: What is div 2 3?
+myDiv :: Int -> Int -> Int
+myDiv a b | elem a [0..(b-1)] = <if>
+<a>
+ans :: Int
+ans = <i>
+prop :: Int -> Bool 
+prop x = ans == 0 
+</a>
+</h>
+<h>
+--myDiv is the number of times we must subtract b from a to reach the base case
+--Lets look at some examples:
+--div 5 3 = 1 because we subtract 3 from 5 once and get an integer less than 3.
+--i.e. 5-<b>1*</b>3 = 2; 
+--div 7 3 = 2 because 7-<b>2*</b>3 = 1;
+
+--Exercise 8
+--Comple our myDiv function by adding the recursive step.
+
+myDiv :: Int -> Int -> Int
+myDiv a b | elem a [0..(b-1)] = 0
+          | otherwise = <if>
+<a>
+myDiv :: Int -> Int -> Int
+myDiv a b | elem a [0..(b-1)] = 0
+          | otherwise = <i>
+test :: Int -> Int -> Int
+test a b | elem a [0..(b-1)] = 0
+         | otherwise = 1 + (test(a-b) b)
+prop :: Int -> Int -> Bool 
+prop a b | b == 0 = True
+         | True = myDiv (abs a)  (abs b) == test (abs a) (abs b) 
+</a>
+</h>

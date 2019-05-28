@@ -1,0 +1,21 @@
+10
+Last class we looked at lists. Now let's see what we can do with them.
+The main type of operations we will use on lists are called <b>list comprehensions</b>.
+A list comprehension is a way of creating a new list from an old list. They can look a bit scary at first but stick with me and I will break it down into its parts.
+So let me show you what one looks like.\n[x^2 | x<-[1,2,3,4]]\nThis is a list comprehension that squares all of the elements of the list [1,2,3,4]. x<-[1,2,3,4] is called the <b>generator</b>.
+We can read a list comprehension by pronouncing the <b><-</b> as drawn from and the <b>|</b> as where. 
+[x^2 | x<-[1,2,3,4]]\nSo, we read the above list comprehension by saying "The list of x^2 <b>where</b> x is <b>drawn from</b> [1,2,3,4]".
+However, we don't want to just square the elements of the list [1,2,3,4] so how do we square the elements of a generic list? Well we write a function!
+Lets call this function squareList. So squareList takes a list of integers and squares them.
+Q4What is the type signature of squareList?
+squareList :: Int -> Int
+squareList :: [Int] -> Int
+squareList :: Int -> [Int]
+*squareList :: [Int] -> [Int]
+*Yes! squareList takes a list of integers and squares all of the entries in the list. The resulting output is therefore still a list of integers.
+Not quite. squareList takes a list of integers and squares all of the entries in the list. The resulting output is therefore still a list of integers.
+The function declaration will look the same as what we had before but we replace [1,2,3,4] with the function parameter.
+So squareList looks like this,\n<align="left">squareList :: [Int] -> [Int]\nsquareList xs = [x^2|x<-xs]</align>
+When writing functions we should always choose meaningful names for the parameters. When you see list comprehensions you will tend to see the list named xs as it stands for x's i.e. multiple x.
+That way we can read x<-xs as x drawn from a list of x's.
+That's all for today, I have sent you another worksheet so please get that completed and I will see you later.

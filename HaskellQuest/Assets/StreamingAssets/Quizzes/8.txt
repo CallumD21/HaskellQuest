@@ -1,0 +1,93 @@
+﻿3,50,100
+<s>
+Write a function called lastRec that takes a list of integers and returns the last element of the list. (The inbuilt function last is blocked and we will also assume the list is not empty.)\n(You should use recursion for all the questions)
+<a>
+import Prelude hiding (last)
+<i>
+test :: [Int] -> Int
+test [x] = x
+test (x:xs) = test xs
+prop_test :: [Int] -> Bool
+prop_test xs | xs == [] = True
+             | otherwise =  lastRec xs == test xs
+</a>
+<h>	
+Keep removing elements of the list, until we reach the list with one element.
+A list with one element can be found using pattern matching, [x].
+To pattern match a generic list we use (x:xs) where x is the first element of the list and xs is the rest of the list.
+</h>
+Write a function called secondToLastRec that takes a list of integers and returns the last but one element of the list. (The inbuilt function last is blocked and we will also assume the list has at least 2 elements.)
+<a>
+import Prelude hiding (last)
+<i>
+test :: [Int] -> Int
+test [x,y] = x
+test (x:xs) = test xs
+prop_test :: [Int] -> Bool
+prop_test xs | length xs <=1 = True
+             | otherwise =  secondToLastRec xs == test xs
+</a>
+<h>
+A list with two elements can be found using pattern matching, [x,y].
+</h>
+</s>
+<s>
+Write a function called lowerCase which takes a String and puts all of the characters in the string in lower case.
+<a>
+import Data.Char
+<i>
+test :: String -> String
+test "" = ""
+test (x:xs) = toLower x : test xs
+prop_test :: String -> Bool
+prop_test xs =  lowerCase xs == test xs
+</a>
+<h>
+Take a character out of the string and send it to lower case. Keep doing this until you reach the ...
+The inbuilt function toLower and : may come in handy.
+</h>
+Write a function called reverseRec that takes a String and reverses it i.e. "Hello" goes to "olleH". (The inbuilt function reverse is blocked!)
+<a>
+import Prelude hiding (reverse)
+<i>
+test :: String -> String
+test "" = ""
+test (x:xs) = test xs ++ [x]
+prop_test :: String -> Bool
+prop_test xs =  reverseRec xs == test xs
+</a>
+<h>
+To reverse a list we put the character at the front to the back of the reversed rest of the list.
+To insert at the back of a list we cannot use : and must instead use ++.
+Be careful as ++ combines two lists not a list and an element.
+</h>
+</s>
+<s>
+Write a function called productDoubleListRec which takes a list of integers, doubles all of the entries in the list and takes the product of this list.
+<a>
+<i>
+test :: [Int] -> Int
+test [] = 1
+test (x:xs) = 2*x * test xs
+prop_test :: [Int] -> Bool
+prop_test xs =  productDoubleListRec xs == test xs
+</a>
+<h>
+What should we output when we reach the empty list?
+To take the product of the doubled list we take the current element, double it and times this by the product of the doubled of the rest of the list. 
+</h>
+Write a function called allOddRec that takes a list of integers and returns True if all of the integers are odd.
+<a>
+<i>
+test :: [Int] -> Bool
+test [] = True
+test (x:xs) = not (even x) && test xs
+prop_test :: [Int] -> Bool
+prop_test xs =  allOddRec xs == test xs
+</a>
+<h>
+The inbuilt functions not, even and && may come in handy.
+What should allOddRec output when it reaches the empty list?
+All of the entries in the list are odd if the current element is odd AND all of the elements in the rest of the list are odd.
+</h>
+</s>

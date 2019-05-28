@@ -1,0 +1,62 @@
+﻿3,50,100
+<s>
+Write a function called halveEvensRec that takes a list of integers and halves each even number in the given list. Your definition should use recursion, not list comprehension (as for all of the following questions).
+<a>
+<i>
+test :: [Int] -> [Int]
+test [] = []
+test (x:xs) | even x = div x 2 : test xs
+            | otherwise = test xs
+prop_test :: [Int] -> Bool
+prop_test xs =  halveEvensRec xs == test xs
+</a>
+<h>
+Use guards to check if the current entry is even.
+To halve the even elements of the list we look at the current entry. If it is even then half it and insert it into the list that results from halving the even elements in the rest of the list. If it is odd then we just halve the evens in the rest of the list.
+The inbuilt functions even and div may come in handy.
+</h>
+Write a function countPositivesRec to count the positive numbers in a list of integers (the ones strictly greater than 0).
+<a>
+<i>
+test :: [Int] -> Int
+test [] = 0
+test (x:xs) | x>0 = 1 + test xs
+            | otherwise = test xs
+prop_test :: [Int] -> Bool
+prop_test xs =  countPositivesRec xs == test xs 
+</a>
+<h>
+Use guards to check if the current entry is positive.
+What should the output of countPositivesRec with the empty list be?
+</h>
+</s>
+<s>
+Write a function called multDigitsRec that takes a String and returns the product of all the digits in the input string. If there are no digits, your function should return 1.
+<a>
+import Data.Char
+<i>
+test :: String -> Int
+test [] = 1
+test (x:xs) | isDigit x = digitToInt x * test xs
+            | otherwise = test xs
+prop_test :: String -> Bool
+prop_test xs =  multDigitsRec xs == test xs
+</a>
+<h>
+The inbuilt functions isDigit and digitToInt may come in handy.
+Use guards to check if the current charater is a digit.
+</h>
+Write a function called inRangeRec that takes two integers a and b (in that order) and a list of integers. It should return all numbers in the input list bigger than a and less than b (inclusive).
+<a>
+<i>
+test :: Int -> Int -> [Int] -> [Int]
+test a b [] = []
+test a b (x:xs) | a<=x && x<=b = x : test a b xs
+                | otherwise = test a b xs
+prop_test :: [Int] -> Bool
+prop_test xs = inRangeRec (minimum xs + 5) (maximum xs + 5) xs == test (minimum xs + 5) (maximum xs + 5) xs
+</a>
+<h>
+In the recursive step make sure to call inRangeRec with the correct number of arguments. 
+</h>
+</s>

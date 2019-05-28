@@ -1,0 +1,16 @@
+10
+To finish off the course we are going to combine two things we have looked at in previous classes, recursion and guards.
+Last class we looked at the function below which sums all of the elements in the list. <align="left">\nsumList :: [Int] -> Int\nsumList [] = 0\nsumList (x:xs) = x + sumList xs</align>
+But what if now we only want to sum the even numbers in the list? Well, we can use guards.
+The base case would stay the same but in the final line we have to check if x is even. If it is we add x onto the sum of the rest of the list. If it is not we just sum the rest of the list.
+So, our new function that only sums the even entires of the list has the following definition.<align="left">\nsumEvenList :: [Int] -> Int\nsumEvenList [] = 0\nsumEvenList (x:xs) | even x = x + sumEvenList xs\n<color=white> sumEvenList (x:xs)</color>| otherwise = sumEvenList xs</align>
+Q2What should be the output of "sumEvenList [1,2,3,4]"?
+10
+*6
+*Yes, we add all of the even numbers in the list. That is 2+4=6.
+Remember sumEvenList only sums the even elements of the list. That is 2+4=6.
+Now let's work through calling sumEvenList with input [1,2,3,4].
+<align="left">sumEvenList [1,2,3,4]\n= sumEvenList(1:[2,3,4]) <color=blue>(even 1 = False)</color>\n= sumEvenList([2,3,4])\n= sumEvenList(2:[3,4]) <color=blue>(even 2 = True)</color>\n= 2 + sumEvenList([3,4])\n= 2 + sumEvenList(3:[4]) <color=blue>(even 3 = False)</color></align>
+<align="left">= 2 + sumEvenList([4])\n= 2 + sumEvenList(4:[]) <color=blue>(even 4 = True)</color>\n= 2 + (4 + sumEvenList [])\n= 2 + (4 + 0)\n= 6</align>
+This is the last class for this course, thank you for you participation throughout the classes and I hope you enjoyed them.
+Wait! Before you go, I have just sent you the final worksheet for the course that is all about recursion!

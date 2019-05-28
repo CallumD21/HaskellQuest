@@ -1,0 +1,84 @@
+﻿3,50,100
+<s>
+Create a list called triple that uses a list comprehension to triple the integers 1 through 100 inclusive.
+<a>
+<i>
+prop_test :: Int -> Bool
+prop_test x = triple == [x*3|x<-[1..100]]
+</a>
+<h>
+A list comprehension has general form [f(x) | x<-xs] where f is a function of x and xs is a list.
+In our case xs is the list of integers 1 through to 100 inclusive (you created this in the last puzzle).
+</h>
+Write a function called sumTriple that takes a list of integers and sums the triple of each element.
+<a>
+<i>
+test :: [Int] -> Int
+test xs = sum[3*x | x<-xs]
+prop_test :: [Int] -> Bool
+prop_test xs = sumTriple xs == test xs
+</a>
+<h>
+This is similar to the previous question but [1..100] is replaced by a generic list.
+The inbuilt function sum may come in handy.
+</h>
+</s>
+<s>
+Write a function called allEven that returns True if all of the integers in the given list are even and False otherwise.
+<a>
+<i>
+test :: [Int] -> Bool
+test xs = and[even x | x<-xs]
+prop_test :: [Int] -> Bool
+prop_test xs = allEven xs == test xs
+</a>
+<h>
+First convert all of the integers in the list to Booleans depending if they are even or odd.
+Then use an inbuilt function that takes this list of Booleans and returns True if they are all even and false otherwise.
+</h>
+Write a function called oneOdd that returns True if at least one of the integers in the given list is odd and False otherwise.
+<a>
+<i>
+test :: [Int] -> Bool
+test xs = or[not (even x) | x<-xs]
+prop_test :: [Int] -> Bool
+prop_test xs = oneOdd xs == test xs
+</a>
+<h>
+First convert all of the integers in the list to Booleans depending if they are even or odd.
+Then use an inbuilt function that takes this list of Booleans and returns True if at least one is even and False otherwise.
+</h>
+</s>
+<s>
+Write a function called factorial that takes an integer n and calculates 1*2*3*...*n. (Note: check that n is non-negative, if it is not return -1).
+<a>
+<i>
+test :: Int -> Int
+test n | n>=0 = product[1..n]
+       | otherwise = -1
+prop_test :: Int -> Bool
+prop_test n = factorial n == test n
+</a>
+<h>
+Create a list of the integers 1 through n and then calculate the product of these.
+Use guards to check that n is non-negative.
+The inbuilt function product may come in handy.
+</h>
+Write a function called capitalise which takes a String and capitalises it. That means that the first character should be made uppercase and any other letters should be made lowercase. (Extra care should be taken with the empty String.)
+<a>
+import Data.Char
+<i>
+test :: String -> String
+test "" = ""
+test name = toUpper (head name) : [toLower x | x<-tail name]
+prop_test :: String -> Bool
+prop_test str = capitalise str == test str
+</a>
+<h>
+Use pattern matching or guards to deal with when the given string is empty, if it is then just return the empty string.
+Use inbuilt functions to decompose the string into the first character and the rest of the string.
+Use toUpper on the first character and toLower as well as a list comprehension to make the rest of the string lower case.
+toLower can only make a character lowercase and not a string.
+head and tail may come in handy.
+</h>
+</s>

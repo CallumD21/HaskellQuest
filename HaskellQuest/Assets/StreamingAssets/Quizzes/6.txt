@@ -1,0 +1,62 @@
+﻿3,50,100
+<s>
+Write a function sign that takes an integer and returns the character; '+' if the integer is positive, '0' if the integer is 0 and '-' if the integer is negative.
+<a>
+<i>
+test :: Int -> Char
+test x | x>0 = '+'
+       | x==0 = '0'
+       | x<0 = '-'
+prop_test :: Int -> Bool
+prop_test x = sign x == test x
+</a>
+<h>
+Characters have type Char.
+Use guards to break the input into its different cases.
+This function should be straight forward you do not need to use list comprehensions.
+</h>
+Write a function signs that takes a list of integers and returns the sign of each integer between -9 and 9 (inclusive), ignoring any number out of that range. (Use the sign function you have just written.)
+<a>
+<i>
+sign :: Int -> Char
+sign x | x>0 = '+'
+       | x==0 = '0'
+       | x<0 = '-'
+test :: [Int] -> String
+test xs = [ sign x | x<-xs, x<=9, x>=(-9)]
+prop_test :: [Int] -> Bool
+prop_test xs = signs xs == test xs
+</a>
+<h>
+When writing a negative number make sure that it is in brackets so (-9) and NOT -9.
+Use a list comprehension with guards to check that x is in the correct range.
+</h>
+</s>
+<s>
+Write a function countDigits that takes a String and returns the number of digits in the input string.
+<a>
+import Data.Char
+<i>
+test :: String -> Int
+test str = sum [ 1 | c<-str, isDigit c]
+prop_test :: String -> Bool
+prop_test str = countDigits str == test str
+</a>
+<h>
+The inbuilt function isDigit may come in handy.
+isDigit takes a character and returns true if it is a digit i.e. the character is a number.
+</h>
+Write a function multDigits that takes a String and returns the product of all the digits in the input string.
+<a>
+import Data.Char
+<i>
+test :: String -> Int
+test str = product [ digitToInt c | c<-str, isDigit c]
+prop_test :: String -> Bool
+prop_test str = multDigits str == test str
+</a>
+<h>
+The inbuilt functions isDigit, digitToInt and product may come in handy.
+digitToInt takes a character that is a digit and converts it to an integer so that Haskell can do the normal integer calculations such as multiplication.
+</h>
+</s>

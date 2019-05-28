@@ -1,0 +1,23 @@
+15
+Last class we looked at list comprehensions and in the next few classes we will look at how we can make them more advanced.
+First of all we can add multiple generators so we draw data from multiple lists. 
+When we do this, Haskell goes through all possible combinations of the data in the lists and combines them by the output function we supply.
+Let's look at an example,\n[(x,y) | x<-[1,2], y<-[3]]\nSo, x is drawn from the list 1 and 2 and y is drawn from the list just including 3. We then output all possible pairs with x first and y second. 
+So, the output is\n[(1,3),(2,3)]\nFirst x=1 we then pair this with <b>all</b> possible values of y <b>in order</b>. y is only ever 3 so we output (1,3). Then we move x onto the next value and pair it with all possible values of y, so we get (2,3).
+Now, I will show you a few slightly more complicated list comprehensions and see if you can figure out what their outputs will be.
+Q4What is the output of [(x,y) | x<-[1,2], y<-[3,4]]?
+*[(1,3),(1,4),(2,3),(2,4)]
+[(1,3),(2,3),(1,4),(2,4)]
+[(3,1),(4,1),(3,2),(4,2)]
+[(3,1),(3,2),(4,1),(4,2)]
+*Yes! First we pair x=1 with all possible values of y so (1,3) and (1,4) then we move x onto the next value and repeat so (2,3) and (2,4).
+Not quite. First we pair x with all possible values of y so (1,3) and (1,4) then we move x onto the next value and repeat so (2,3) and (2,4).
+Q4What is the output of [(y,x) | x<-[1,2], y<-[3,4]]?
+[(1,3),(1,4),(2,3),(2,4)]
+[(1,3),(2,3),(1,4),(2,4)]
+*[(3,1),(4,1),(3,2),(4,2)]
+[(3,1),(3,2),(4,1),(4,2)]
+*Yes! This time x is the second in the pair so we pair x=1 with all possible values of y which gives (3,1) and (4,1). Then repeat with x=2 so (3,2) and (4,2).
+Not quite. This time x is the second in the pair so we pair x=1 with all possible values of y which gives (3,1) and (4,1). Then repeat with x=2 so (3,2) and (4,2).
+The output function where we combine the x and the y can be a lot more complicated than just pairing up the values so make sure you understand the order the values get evaluated from the lists.
+That's all for today we will continue looking at list comprehensions in the next couple of classes.

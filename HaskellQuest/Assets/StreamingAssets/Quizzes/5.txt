@@ -1,0 +1,54 @@
+﻿3,50,100
+<s>
+Write a function called halveEvens that takes a list of integers and halves each even number in the list.
+<a>
+<i>
+test :: [Int] -> [Int]
+test xs = [div x 2 | x<-xs, even x]
+prop_test :: [Int] -> Bool
+prop_test xs = halveEvens xs == test xs 
+</a>
+<h>
+A list comprehension has form [f(x) | x<-xs, guards] where guards are Boolean functions that the x must satisfy.
+Remember ‘/’ cannot be used for integer division so use div.
+The inbuilt function even may come in handy.
+</h>
+Write a function called countPositives that takes a list of integers and returns the number of integers strictly greater than 0.
+<a>
+<i>
+test :: [Int] -> Int
+test xs = sum[1 | x<-xs, x>0]
+prop_test :: [Int] -> Bool
+prop_test xs = countPositives xs == test xs 
+</a>
+<h>
+The function sum will come in handy.
+The function should not sum the non-negative numbers so if an entry is non-negative what should you put in the list to count it?
+</h>
+</s>
+<s>
+Write a function called inRange that takes two integers a and b (in that order) and a list of integers. It should return all numbers in the input list bigger than a and less than b (inclusive).
+<a>
+<i>
+test :: Int -> Int -> [Int] -> [Int]
+test a b xs = [x | x<-xs, a<=x, x<=b]
+prop_test :: [Int] -> Bool
+prop_test xs = inRange (minimum xs + 5) (maximum xs + 5) xs == test (minimum xs + 5) (maximum xs + 5) xs 
+</a>
+<h>
+Use two guards to check that x is in between a and b.
+</h>
+Write a function called squareListList that takes a list of list of integers and returns the list of list of integers where each element has been squared.
+<a>
+<i>
+test :: [[Int]] -> [[Int]]
+test xss = [[x^2 | x<-xs] | xs<-xss] 
+prop_test :: [[Int]] -> Bool
+prop_test xss = squareListList xss == test xss
+</a>
+<h>
+A list of list of integers has type [[Int]].
+You will need to use a nested list comprehension.
+The outer list comprehension should remove a list from the list of lists and the inner should square the elements of this list.
+</h>
+</s>

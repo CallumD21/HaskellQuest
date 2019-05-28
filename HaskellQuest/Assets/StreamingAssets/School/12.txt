@@ -1,0 +1,45 @@
+10
+Last class we looked at recursion and used recursive functions to analyse mathematical equations. Today we will use recursion on lists.
+When we first looked at lists we used list comprehensions in order to work with the elements in the list but we could have also used recursion. 
+We have already looked at the list comprehension for squaring all of the elements of a given list,\n[x^2 | x<-xs].
+To do this recursively we need to identify two things, what is the base case (could be multiple of them) and what is the recursive step. To identify these things we will think about how we, as humans, achieve this task.
+Let's say we have the list [1,2,3,4] then we know that the resulting list of squaring all of the elements is [1,4,9,16]. But how did we do this?
+Well, we looked at the first element, 1, squared it, to get 1, then looked at the next element, 2, squared it, to get 4, and so on. We did this until we had squared all of the elements and we are left with the empty list. Then we combined all our squared numbers and the empty list to get the resulting list.
+So how do we do this in Haskell? Well as mentioned a couple of classes ago a list can be written using only cons, (:), and the empty list, [ ]. This gives us a recursive definition of lists.
+A list is either the empty list or the first element and the rest of the list. Notice that in my definition of lists I use the word list! 
+Now we have identified the two issues, the base case is the empty list, when we reached this we stopped, and the recursive step is to square the first item and recurse on the rest of the list. So in Haskell this is...
+As always make a note of this function,<align="left">\nsquareList :: [Int] -> [Int]\nsquareList [ ] = [ ]\nsquareList (x:xs) = x*x : squareList xs</align>
+So, if the input is the empty list we output the empty list. Otherwise the list is non-empty so x matches with the first element of the list and xs with the rest of the list. 
+We then square the first element and call the function on the rest of the list. Let's work through this with an example...
+<align="left">squareList [1,2,3]\n= squareList (1:[2,3]), <color=blue>(x=1,xs=[2,3])</color>\n= 1*1 : squareList [2,3]\n= 1*1 : squareList (2:[3]), <color=blue>(x=2,xs=[3])</color>\n= 1*1 : (2*2 : squareList [3])\n= 1*1 : (2*2 : squareList (3:[ ])), <color=blue>(x=3,xs=[ ])</color></align>
+<align="left">= 1*1 : (2*2 : (3*3 : squareList [ ]))\n= 1*1 : (2*2 : (3*3 : [ ]))\n= 1 : (4 : (9 : [ ]))\n= [1,4,9]</align>
+This type of thinking is what you should use to write all of your recursive functions in Haskell. 
+Sometimes you may think it is quicker to jump straight in and start programming only then to realise you have no idea what to do! Always try and break the problem down into simpler steps.
+Now let's create a recursive function together. We are going to create a function called sumList that adds all of the elements in the list together.
+Q2What should be the output of "sumList [1,2,3,4]"?
+*10
+24
+*Yes, we just add all of the numbers together so 1+2+3+4=10.
+sumList should add all of the elements of the list not multiply them! So should output 1+2+3+4=10.
+We arrived at this answer by taking the first element and adding it to the sum of the rest of the list. So our recursive step is sumList (x,xs) = x + sumList xs. 
+Q4We keep recursing until we reach the empty list. Then we output...
+[ ]
+1
+*0
+I have no idea
+We add all of the elements in the list and then when we reach the empty list we have to add on a value that won't alter the sum of the list. So we output the identity of addition which is 0 as 0+x=x.
+Hence our function is, again make a note of this:<align="left">\nsumList :: [Int] -> Int\nsumList [] = 0\nsumList (x:xs) = x + sumList xs</align>
+So let's work through an example...
+<align="left">sumList [1,2,3]\n= sumList (1:[2,3]), <color=blue>(x=1,xs=[2,3])</color>\n= 1 + sumList [2,3]\n= 1 + sumList (2:[3]), <color=blue>(x=2,xs=[3])</color>\n= 1 + (2 + sumList [3])\n= 1 + (2 + sumList (3:[ ])), <color=blue>(x=3,xs=[ ])</color></align>
+<align="left">= 1 + (2 + (3 + sumList [ ]))\n= 1 + (2 + (3 + 0))\n= 6</align>
+We can also create a function that takes the product of all of the elements in a list. This is very similar to sumList but with 2 changes.
+The 1st change is instead of combining the elements with + we combine them with *. The second change is the base case.
+Q4What is the output when we reach the empty list?
+[ ]
+*1
+0
+I have no idea
+We multiply all of the elements in the list and then when we reach the empty list we have to multiply by a value that won't alter the value of the product of the list. So we output the identity of multiplication which is 1 as 1*x=1.
+This gives us the following function:<align="left">\nproductList :: [Int] -> Int\nproductList [] = 1\nproductList (x:xs) = x * productList xs</align>
+Sorry that this was a long class but recursion is very important in Haskell but can be difficult to understand. 
+See you next time, for our last class in which we will look at recursive functions with guards!

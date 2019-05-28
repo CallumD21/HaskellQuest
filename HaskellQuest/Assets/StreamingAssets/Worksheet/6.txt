@@ -1,0 +1,145 @@
+20
+<mc>
+--Worksheet 2
+--The first few exercises will involve you playing around with lists.
+--Then you will write your first list comprehension.
+
+--Exercise 1 
+
+--As mentioned in class Haskell has inbuilt functions that can operate on lists.
+--Again use hoogle to see how a function is defined.
+
+f :: Int
+f =
+<c>
+undefined
+sum [1,2,3,4]
+product [1,2,3,4]
+length [1,2,3,4]
+minimum [2,1,4,3]
+maximum [2,1,4,3]
+head [2,1,4,3]
+last [2,1,4,3]
+</c>
+<r>
+10
+24
+4
+1
+4
+2
+3
+</r>
+</mc>
+<mc>
+--maximum and max are both similar functions but max takes two numbers and 
+--returns the biggest and maximum takes a list and returns the largest element.
+--Make sure you call the appropriate one.
+
+--Exercise 2
+
+--The functions from the last exercise should have behaved as you expected.
+--As you should have noticed, head returns the first element of the list.
+--There is a related function called tail, let's see what it does. 
+
+g :: [Int]
+g =
+<c>
+undefined
+tail [2,1,4,3]
+</c>
+<r>
+[1,4,3]
+</r>
+</mc>
+<mc>
+--So tail returns the list excluding the head.
+--This means that a list can be defined as its head inserted into its tail.
+--We will talk more about this in the upcoming classes.
+--NOTE: head and tail cannot be used on the empty list!
+
+--Exercise 3
+
+--A list doesn't just have to contain integers it can contain many different types,
+--such as booleans.
+
+h :: Bool
+h =
+<c>
+undefined
+and[True,False,True]
+or [True,False,True]
+</c>
+<r>
+False
+True
+</r>
+</mc>
+<mc>
+--The functions "and" and "or" are the Boolean operators for lists.
+--"and" returns True if all of the elements of the list are True and 
+--"or" returns True if at least one element of the list is True.
+
+--Exercise 4
+
+--As mentioned in class we also have the cons and append functions which are 
+--very useful.
+--Lets have a quick recap of how they work.
+
+j :: [Int]
+j =
+<c>
+undefined
+1:[2,3,4]
+[3,4]++[1,2]
+</c>
+<r>
+[1,2,3,4]
+[3,4,1,2]
+</r>
+</mc>
+<mc>
+--Exercise 5
+
+--However we must be careful with how we use them.
+
+k :: String
+k =
+<c>
+undefined
+'H' ++ "ello""
+"H" : "ello"
+1 : "ello"
+</c>
+<r>
+<color=red>error:</color> Couldn't match expected type '[Char]' with actual type 'Char'
+<color=red>error:</color> Couldn't match expected type 'Char' with actual type '[Char]'
+<color=red>error:</color> No instance for (Num Char) arising from the literal '1'
+</r>
+</mc>
+<h>
+--The first error is because we are trying to append a character 'H' and a list of
+--characters (or a String) "ello" but append requires two lists. The second error is
+--because we are trying to use cons to insert the String "H" into the String "ello"
+--but cons requires an element and a list. Finally, the third error is because a list
+--can only contain data of the same type but we are trying to insert an Int into a
+--String.
+
+--Exercise 6
+
+--Now you are ready to write your first list comprehension.
+--Remember a list comprehension has the following form: [f(x) | x<- xs]
+--Where f is a function of x and xs is some given list.
+--Complete the following function that doubles every element in the list.
+
+doubleList :: [Int] -> [Int]
+doubleList xs = <if>
+<a>
+doubleList:: [Int] -> [Int]
+doubleList xs = <i>
+test :: [Int] -> [Int]
+test xs = [x*2 | x<-xs]
+prop :: [Int]->Bool
+prop x = doubleList x == test x
+</a>
+</h>

@@ -1,0 +1,91 @@
+﻿3,50,100
+<s>
+Write a function called second that takes a pair of integers and returns the second integer of the pair. (The inbuilt function snd is blocked!)
+<a>
+import Prelude hiding (snd)
+<i>
+test :: (Int,Int) -> Int
+test (_,a) = a
+prop_test :: (Int,Int) -> Bool
+prop_test x = test x == second x
+</a>
+<h>
+A pair has type: (type of first item, type of second item).
+Use pattern matching to do this.
+</h>
+</s>
+<s>
+Write a function called sign that returns "Positive" if the given integer is bigger or equal to 0 and "Negative" if it is less than 0.
+<a>
+<i>
+test :: Int -> String
+test x | x>=0 = "Positive"
+       | x<0  = "Negative" 
+prop_test :: Int -> Bool
+prop_test x = test x == sign x
+</a>
+<h>
+You need to use guards for this!
+A guard has the form "| condition = output".
+Line up the guards and don't use the tab key.
+Make sure every input has a condition it satisfies.
+Remember strings are case sensitive.
+</h>
+Write a function called max that takes two integers and returns the biggest. (The inbuilt function max is blocked!)
+<a>
+import Prelude hiding (max)
+<i>
+test :: Int -> Int -> Int
+test a b | a>b = a
+         | otherwise = b
+prop_test :: Int -> Int -> Bool
+prop_test a b = test a b == max a b
+</a>
+<h>
+This is very similar to the previous question.
+</h>
+Write a function called abs that takes the absolute value of the given integer. (The inbuilt function abs is blocked!)
+<a>
+import Prelude hiding (abs)
+<i>
+test :: Int -> Int
+test a | a>=0 = a
+       | otherwise = -a
+prop_test :: Int -> Bool
+prop_test x = test x == abs x
+</a>
+<h>
+The absolute value is the magnitude of the number.
+abs 1 should be 1 whereas abs -1 should also be 1.
+</h>
+</s>
+<s>
+Write a function called getNumber that takes an integer, x, and a pair of integers (in that order). It should return the first number of the pair if x is odd and the second number of the pair otherwise.
+<a>
+<i>
+test :: Int -> (Int,Int) -> Int
+test x p | even x = snd p
+         | otherwise = fst p
+prop_test :: Int -> (Int,Int) -> Bool
+prop_test a (b,c) = test a (b,c) == getNumber a (b,c)
+</a>
+<h>
+The inbuilt functions, even, fst and snd may come in handy.
+A number is odd if it is not even.
+Haskell has an inbuilt not function to negate a boolean.
+</h>
+Re-write the getNumber function you have just written but now you cannot use even, fst or snd! [getNumber returns the first number of the pair if x is odd and the second number of the pair otherwise.]
+<a>
+import Prelude hiding (even, fst, snd)
+<i>
+test :: Int -> (Int,Int) -> Int
+test x (a,b) | mod x 2 == 0  = b
+             | otherwise = a
+prop_test :: Int -> (Int,Int) -> Bool
+prop_test a (b,c) = test a (b,c) == getNumber a (b,c)
+</a>
+<h>
+Use guards for checking if x is even and pattern matching to get the elements of the pair.
+The inbuilt function mod may come in handy.
+</h>
+</s>

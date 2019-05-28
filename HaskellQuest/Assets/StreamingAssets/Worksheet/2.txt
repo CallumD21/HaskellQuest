@@ -1,0 +1,156 @@
+20
+<mc>
+--Worksheet1
+--Things in green are comments and are not read when the code is run.
+--To complete a worksheet you have to complete each question.
+--The next question is unlocked when the current question has been completed.
+--Have fun!
+
+--Exercise 1 
+
+--Select each answer, one by one, from the dropdown menu.
+--Is the output what you expected?
+
+f :: Int
+f =
+<c>
+undefined
+5+3
+9-15
+2*3
+4^2
+6/3
+</c>
+<r>
+8
+-6
+6
+16
+<color=red>error:</color> No instance for (Fractional Int) arising from a use of '/'
+</r>
+</mc>
+<mc>
+--You should have noticed something strange happened with division.
+--This is because an integer divided by an integer is not always an integer,
+--e.g. 1/2, so the function / returns a float.
+--But we specified that f was an Int so we get an error.
+
+--Exercise 2
+--Haskell has a big library of predefined functions that we can use.
+--Let's have a look at some...
+
+
+<c>
+undefined
+even 3
+max 2 5
+length "Dickinson"
+reverse "Dickinson"
+</c>
+<r>
+False
+5
+9
+nosnikciD
+</r>
+
+--If you want to know how a library function works go to hoogle. 
+--(this is not a spelling mistake I don't mean google).
+</mc>
+<mc>
+--Exercise 3
+
+--To do integer division we can use the functions div and mod.
+--div divides the first number by the second and rounds the result down.
+--mod is the modular arithmetic function.
+--Lets see how these work...
+
+g :: Int
+g =
+<c>
+undefined
+div 7 3
+7 `div` 3
+mod 7 3
+7 `mod` 3
+</c>
+<r>
+2
+2
+1
+1
+</r>
+</mc>
+<mc>
+--Exercise 4
+
+--Below is a function that takes in an integer and doubles it.
+--Try each input below and see if the output is what you expect.
+
+double :: Int -> Int
+double x = x*2
+
+<c>
+undefined
+x=2
+x=7
+x="three"
+</c>
+<r>
+4
+14
+<color=red>error:</color> Couldn't match expected type 'Int' with actual type String
+</r>
+</mc>
+<mc>
+--The error is because double expects an Int but "three" is a string.
+
+--Exercise 5
+
+--Below are the two functions defined in class, add and multiply.
+--Run the following and you should notice something...
+
+add :: Int -> Int -> Int
+add x y = x + y
+
+multiply :: Int -> Int -> Int
+multiply x y = x * y
+
+<c>
+undefined
+add 2 (multiply 4 4)
+add 2 multiply 4 4
+</c>
+<r>
+18
+<color=red>error:</color> add is applied to four arguments, but its type has only two
+</r>
+</mc>
+<h>
+--The error shown is because of the lack of parenthesis,
+--so always remember to use parenthesis when combining functions!
+
+--Exercise 6
+
+--Now you will complete your first Haskell function!
+--To complete this question you need to complete the function below to square the 
+--input. Once you have entered your input press the run button in the top right 
+--hand corner. If you are correct then the exit button will unlock in the top right.
+--To determine if you are correct the function you write is compared to the answer 
+--by using QuickCheck. QuickCheck runs a set amount of tests by randomly 
+--generating input and checking that the output of the 2 functions are equal.
+--If they are equal the output will be OK, passed n tests. If they are not equal the 
+--output will be Failed with input: x where x is the input it failed on. However your 
+--function may not even compile so the output will tell you where the error is.
+
+square :: Int -> Int
+square x = <if>
+<a>
+square :: Int -> Int
+square x = <i>
+test :: Int -> Int
+test x = x^2
+prop :: Int->Bool
+prop x = square x == test x
+</a>
+</h>

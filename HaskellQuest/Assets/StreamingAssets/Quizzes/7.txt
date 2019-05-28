@@ -1,0 +1,91 @@
+﻿3,50,100
+<s>
+Write a function score, that converts a character to its score. Each letter starts with a score of one; one is added to the score of a character if it is a vowel (a, e, i, o, u) and one is added to the score of a character if it is upper case; a character that is not a letter scores zero.
+<a>
+import Data.Char
+<i>
+test :: Char -> Int
+test x  =  s (isAlpha x) + s (isUpper x) + s (elem (toLower x) "aeiou")
+  where
+  s t  =  if t then 1 else 0
+prop_test :: Char -> Bool
+prop_test c = score c == test c
+</a>
+<h>
+First, write a helper function called convert that converts True to 1 and False to 0.
+The inbuilt functions isAlpha and isUpper may come in handy.
+To test if the character is a vowel, see if it is an element of the set “aeiou”, the inbuilt function elem will come in handy
+Be careful as ‘A’ is a vowel but is NOT in “aeiou”
+</h>
+Write a function totalScore that given a string returns the product of the score of every letter in the string, ignoring any character that is not a letter.
+<a>
+import Data.Char
+<i>
+score :: Char -> Int
+score x  =  s (isAlpha x) + s (isUpper x) + s (elem (toLower x) "aeiou")
+  where
+  s t  =  if t then 1 else 0
+test :: String -> Int
+test str  =  product [ score c | c<-str, isAlpha c]
+prop_test :: String -> Bool
+prop_test str = totalScore str == test str
+</a>
+<h>
+Use the function score you have just written (you don’t need to write it again).
+Use a list comprehension with a guard to check if the character is a letter.
+The inbuilt functions isAlpha and product may come in handy.
+</h>
+</s>
+<s>
+Write a function called allOdd that takes a String and returns True if all of the integers in the string are odd and false otherwise.
+<a>
+import Data.Char
+<i>
+test :: String -> Bool
+test str = and[not(even(digitToInt c)) | c<-str, isDigit c]
+prop_test :: String -> Bool
+prop_test str = allOdd str == test str
+</a>
+<h>
+The inbuilt functions isDigit, digitToInt, even, “and” and not may come in handy.
+</h>
+Write a function called distances that takes a list of integers and produces a list of distances between consecutive numbers in a list, in those cases where the first number is strictly less than the second number
+<a>
+<i>
+test :: [Int] -> [Int]
+test xs = [y-x | (x,y)<-zip xs (tail xs), x<y]
+prop_test :: [Int] -> Bool
+prop_test xs = distances xs == test xs
+</a>
+<h>
+Using zip with the list and the tail of the list produces a list of consecutive pairs of elements.
+Use pattern matching to get each element of the pair and a guard to check the elements have the correct order.
+</h>
+</s>
+<s>
+Write a function replaceFirst that takes a list of Strings and replaces the first letter of each String in the list by the last letter of the next String. If one of the consecutive strings is empty then ignore it.
+<a>
+<i>
+test :: [String] -> [String]
+test strs = [last str2 : tail str1 | (str1,str2)<-zip strs (tail strs), str1/="", str2/=""]
+prop_test :: [String] -> Bool
+prop_test strs = replaceFirst strs == test strs
+</a>
+<h>
+Like the previous question us the trick of zipping the list with the tail of the list.
+The inbuilt functions last, : and tail may come in handy.
+Not equal is /=.
+</h>
+Write a function search that takes a String and a character (in that order) and returns the positions of all occurrences of the character in the String. The first character has position 1 and so on.
+<a>
+<i>
+test :: String -> Char -> [Int]
+test str c = [ ind | (char,ind)<-zip str [1..length str], char == c]
+prop_test :: String -> Char -> Bool
+prop_test str c = search str c == test str c
+</a>
+<h>
+Zip the string with the list of integers that represent the indices of the characters in the string.
+The list of integers should be 1 up to the length of the string.
+</h>
+</s>

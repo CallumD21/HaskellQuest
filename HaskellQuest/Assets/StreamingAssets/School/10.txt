@@ -1,0 +1,24 @@
+10
+Near the beginning of the course we looked at pattern matching with types such as integers and characters.
+However we can do pattern matching with any type. To do pattern matching with lists we have to think about what is a list?
+A list can be written using only cons, (:), and the empty list, [ ]. For example,\n[1,2,3]= 1:(2:(3:[ ]))
+So, a list is either empty, [ ], or it is the first element of the list plus the rest of the list. The second case can be written as x:xs where x is the first element in the list, : is the cons function and xs is the rest of the list.
+<align="left">checkList :: [Int] -> String\ncheckList [ ] = "The empty list!"\ncheckList (x:xs) = "A non-empty list!"</align>\nSo the first line matches the empty list and the second line matches <b>any</b> non-empty list.
+Pattern matching can be used to match lots of different cases. For example, we can also match a list containing just one item, [x], or a list with two items, [x,y] and so on.
+Make a note of the following function,\n<align="left">f :: [Int] -> String\nf [ ] = "Empty"\nf [x] = "One item"\nf _ = "More than two items"\nf [x,y] = "Two items"</align>
+Q4What is the output of f [52]?
+"Empty"
+*"One item"
+"Two items"
+"More than two items"
+*Yes! [52] is not empty so then we check the second case which matches any list containing exactly one item so the output is "One item".
+Not quite. [52] is not empty so then we check the second case which matches any list containing exactly one item so the output is "One item".
+Q4What is the output of f [52,73]?
+"Empty"
+"One item"
+"Two items"
+*"More than two items"
+*Yes! [52,73] is not empty and doesn't contain just one item so we then fall into the third case. _ matches any list so will catch our input and will output "More than two items".
+Not quite. [52,73] is not empty and doesn't contain just one item so we then fall into the third case. "_" matches any list so will catch our input and will output "More than two items".
+Just like before we have seen that we have to be very careful with the ordering of our cases. Also, as before, we must make sure we have a case that matches every possible input.
+All of which we have covered today is needed for next class where we cover a big topic in programming called <b>recursion</b>. See you later!

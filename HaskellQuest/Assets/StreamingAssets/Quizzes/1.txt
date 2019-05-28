@@ -1,0 +1,80 @@
+﻿3,50,100
+<s>
+Write a function called square that takes a floating point number and squares it!
+<a>
+<i>
+test :: Float -> Float
+test x = x^2
+prop_test :: Float -> Bool
+prop_test x = test x == square x
+</a>
+<h>
+To raise a number to a power we use ^.
+A floating point number has type Float in Haskell.
+</h>
+Write a function called inverse that takes a floating point number and uses the function square you have just written to square this number. Then square root the resulting number!\n[Note: You don't need to give your implementation for square again.]
+<a>
+square :: Float->Float
+square x = x^2
+<i>
+prop_test :: Float -> Bool
+prop_test x = inverse x == abs x
+</a>
+<h>
+Haskell has an inbuilt function, sqrt, that can square root a number.
+When combining two function remember to use paranthesis. For example f(g x) NOT f g x.
+Make sure you square the input before square rooting it as you can only take the square root of a non-negative number.
+</h>
+</s>
+<s>
+Write a function called circleArea that takes a floating point, r, and returns the area of the circle with radius r!\n[Note you can no longer use your square function.]
+<a>
+<i>
+test :: Float -> Float
+test r = pi*r^2
+prop_test :: Float -> Bool
+prop_test r = test r == circleArea r
+</a>
+<h>
+The area of a circle is π multiplied by the radius squared.
+In Haskell the word pi stores the value of π.
+</h>
+Write a function called triangleArea that takes a two floating points, b and h, and returns the area of the triangle with base b and height h.
+<a>
+<i>
+test :: Float -> Float -> Float
+test b h = (b*h)/2
+prop_test :: Float -> Float -> Bool
+prop_test b h = test b h == triangleArea b h 
+</a>
+<h>
+The area of a triangle is half of the base * the height.
+The function is now taking an extra input so you must account for this in the type definition.
+The type definition has form:\nfunctionName :: Input type -> Input type -> Output type
+</h>
+</s>
+<s>
+Write a function called isTriple that returns true if three given integers, a, b and c, are a Pythagorean triple and false otherwise.
+<a>
+<i>
+test :: Int -> Int -> Int -> Bool
+test a b c = a^2+b^2==c^2
+prop_test :: Int -> Int -> Int -> Bool
+prop_test a b c = test a b c == isTriple a b c
+</a>
+<h>
+a, b and c form a Pythagorean triple if the square of a plus the square of b is equal to the square of c.
+We use == to do equality in Haskell.
+</h>
+Write a function called yearsOld that takes an integer number of days a person has been alive and determines how many years old they are!\n[Note you can assume that each year is exactly 365 days.]
+<a>
+<i>
+test :: Int -> Int
+test days = div days 365
+prop_test :: Int -> Bool
+prop_test days = test days == yearsOld days
+</a>
+<h>
+The div function may be useful.
+</h>
+</s>
